@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %} Tweet Application {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center text-black mt-4">Tweet Application</h1>
+
+<h2>Are you sure you to delete tweet</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a type="button" href="{% url 'tweet_list' %}" class="btn btn-success">Cancel</a>
+</form>
+
+{% endblock %}

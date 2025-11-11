@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tweet Application{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center text-black mt-4">Filtered Tweets</h1>
+
+{% if filtered_tweets %}
+<div class="row mt-4">
+    {% for tweet in filtered_tweets %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+
+            {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top pt-3" alt="Tweet photo">
+            {% else %}
+                <div class="p-3 text-center text-muted">No photo</div>
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ tweet.user.username }}</h5>
+                <p class="card-text">{{ tweet.text }}</p>
+
+                {% if tweet.user == user %}
+                    <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger btn-sm">Delete</a>
+                {% endif %}
+            </div>
+
+            <div class="card-footer text-muted">
+                {{ tweet.created_at }}
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p class="text-center mt-4">No tweets found.</p>
+{% endif %}
+
+<a href="{% url 'tweet_list' %}" class="btn btn-secondary mt-3">Back to Home</a>
+
+{% endblock %}
