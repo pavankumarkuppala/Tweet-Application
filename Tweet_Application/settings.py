@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tweet',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,7 @@ LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT = '/tweet/'
 
 LOGOUT_REDIRECT = '/tweet/'
+
 
 
 
